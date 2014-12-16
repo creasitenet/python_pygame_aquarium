@@ -292,7 +292,7 @@ class SceneCredis(Scene):
         self.texte_stitre = fonction.Texte("Credits", 20, constante.gris)
         self.credis = credis.lire_credis()
         self.texte_credis = fonction.Texte_multiligne( (self.credis) )
-        self.texte_credis.position(0, 0, 430, 95)
+        self.texte_credis.position(0, 0, 370, 95)
         self.texte_retour = fonction.Texte(" > Retour [R]",30, constante.bleufonce)
        
     

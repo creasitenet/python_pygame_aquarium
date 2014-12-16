@@ -1,11 +1,15 @@
 Aquarium v0.1
 Edouard Boissel, Juin 2012
-email: edouardboissel@gmail.com
+site: http://www.creasitenet.com
+email: creasitenet.com@gmail.com
 
 Description
 ----------------------------------------------------
-Aquarium est un jeu ecrit en python sous pygame et sous licence GPL.
+Aquarium est un jeu ecrit en python 3.2.4 sous pygame et sous licence GPL.
 Pour le lancer, double cliquez sur le fichier jouer.py
+Vous devez avoir python 3.2 et pygame installés sur votre machine.
+Un clic gauche ajoute un poisson.
+Un clic droit sur un poisson le supprime.
 
 Controles:
 	Jouer - Entrer

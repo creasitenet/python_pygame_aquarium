@@ -12,9 +12,9 @@ from random import randint  #randrange,
  
 
 class Poissons(pygame.sprite.Sprite): 
-    "Definie le comportement et les caractéristiques du poisson."
+    '''Definie le comportement et les caractéristiques du poisson.'''
     def __init__(self):
-        "Initialise le poisson"
+        '''Initialise le poisson'''
         pygame.sprite.Sprite.__init__(self)
         
         # variables générales
@@ -32,7 +32,7 @@ class Poissons(pygame.sprite.Sprite):
         self.directions = [] #tuple (x,y)     
         
     def generer(self, position_x, position_y):
-        "Generer le poisson."
+        '''Generer le poisson.'''
         
         # couleur aléatoire
         couleurs_disponibles = ["bleu","jaune","rouge","violet"]
@@ -81,16 +81,16 @@ class Poissons(pygame.sprite.Sprite):
         
         
     def evenements(self, evenement = None):
-        "Recoit les evenements pour déterminer les action du poisson."
+        '''Recoit les evenements pour déterminer les action du poisson.'''
         pass
     
     def evenements_clavier(self, touche = None):
-        "Recoit les evenements clavier pour déterminer les action du poisson."
+        '''Recoit les evenements clavier pour déterminer les action du poisson.'''
         # Définir la touche enfoncée 
         pass
     
     def evenements_souris(self, bouton = None, position = None):
-        "Recoit les evenements souris pour déterminer les action du poisson."
+        '''Recoit les evenements souris pour déterminer les action du poisson.'''
         #print (bouton) #1 = gauche, 2 = milieu, 3 = droite, 4 = molette haut, 5 = molette bas
         #print (position) # position en pixel sur l'ecran
         if bouton == 1: #bouton gauche de la souris
@@ -100,11 +100,11 @@ class Poissons(pygame.sprite.Sprite):
         #pass
         
     def evenements_joystick(self, axe = None, sens = None):
-        "Recoit les evenements joystick pour déterminer les action du gorille."
+        '''Recoit les evenements joystick pour déterminer les action du joueur.'''
         pass   
     
     def actualiser(self):
-        "Actualiser la position de chaque poisson." # L'actualisation n'affiche rien !!!
+        '''Actualiser la position de chaque poisson.''' # L'actualisation n'affiche rien !!!
         for i in range(0, len(self.images)): #pour chaque poisson de la struture
             
             # changement de direction en cas de colision avec les bord
@@ -130,31 +130,31 @@ class Poissons(pygame.sprite.Sprite):
         #pass
         
     def effacer(self, numero):
-        "Sert pour effacer le poisson."
-        print ("clic sur un poisson")
+        '''Sert pour effacer le poisson.'''
+        #print ("clic sur un poisson")
         self.images_gauche_droite.pop(numero)
         self.images.pop(numero) 
         self.positions.pop(numero)     
         self.directions.pop(numero)
 
     def faim(self):
-        "Detecte si le poisson a faim."
+        '''Detecte si le poisson a faim.''' #pas implémenté encore
         pass
     
     def mange(self, nourriture):
-        "Detecte si le poisson mange."
+        '''Detecte si le poisson mange.''' #pas implémenté encore
         '''if self.pos_x == nourriture.rect.x and self.pos_y == nourriture.rect.y:
             return True
         return False'''
         pass
         
     def collision(self, position_x, position_y):
-        "Verifie si la position cliquée correspond à un poisson"        
+        '''Verifie si la position cliquée correspond à un poisson'''       
         for i in range(0, len(self.images)): #pour chaque poisson de la struture
-            gauche_poisson = self.positions[i][0]
-            droite_poisson = self.positions[i][0] + (self.dimension.width)
-            haut_poisson = self.positions[i][1]
-            bas_poisson = self.positions[i][1] + (self.dimension.height)
+            gauche_poisson = int(self.positions[i][0])
+            droite_poisson = int(self.positions[i][0] + (self.dimension.width))
+            haut_poisson = int(self.positions[i][1])
+            bas_poisson = int(self.positions[i][1] + (self.dimension.height))
             #print (position_x, self.positions[i][0], gauche_poisson, droite_poisson)
             #print (position_y, self.positions[i][1], haut_poisson, bas_poisson)
             if (position_x in range(gauche_poisson, droite_poisson)) and (position_y in range(haut_poisson, bas_poisson)):
@@ -165,7 +165,7 @@ class Poissons(pygame.sprite.Sprite):
         #pass
     
     def afficher(self, ecran):
-        "Sert pour afficher les poissons."
+        '''Sert pour afficher les poissons.'''
         for i in range(0, len(self.images)):
             ecran.blit(self.images[i], self.positions[i])
             #increment
