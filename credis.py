@@ -4,7 +4,7 @@
 # Ecrit par : Edouard Boissel
 # Licence : LGPL
 # Date : 03/06/12
-"Les credits."
+'''Les credits.'''
     
 def lire_credis():
     #scores = []

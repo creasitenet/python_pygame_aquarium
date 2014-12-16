@@ -3,7 +3,7 @@
 # Ecrit par : Edouard Boissel
 # Licence : LGPL
 # Date : 03/06/12
-"Scenes du jeu."
+'''Scenes du jeu.'''
 
 import pygame
 #import time
@@ -20,7 +20,7 @@ import credis
 
 
 class SceneInitiale(Scene):
-    "Scene menu : affiche le menu."
+    '''Scene menu : affiche le menu.'''
     def __init__(self):
         #Initialisation de la scene
         Scene.__init__(self)
@@ -53,7 +53,7 @@ class SceneInitiale(Scene):
             self.texte_joystick = fonction.Texte("Pas de joystick", 20, constante.gris)
     
     def evenements_clavier(self, clavier = None):
-        "Lire les evenements clavier pour déterminer les action ou la scene correspondante." 
+        '''Lire les evenements clavier pour déterminer les action ou la scene correspondante.'''
         #print clavier
         if clavier:
             touche = clavier.key
@@ -77,7 +77,7 @@ class SceneInitiale(Scene):
                     quit()
                 
     def evenements_souris(self, souris = None):
-        "Lire les evenements souris pour déterminer les action ou la scene correspondante." 
+        '''Lire les evenements souris pour déterminer les action ou la scene correspondante.'''
         if souris: #print souris
             if souris.type == pygame.MOUSEMOTION: # si deplacement souris
                 position = souris.pos
@@ -103,7 +103,7 @@ class SceneInitiale(Scene):
                         quit()
     
     def evenements_joystick(self, joystick = None):
-        "Lire les evenements souris pour déterminer les action ou la scene correspondante."
+        '''Lire les evenements souris pour déterminer les action ou la scene correspondante.'''
         if joystick:
             # les axes
             if joystick.type == pygame.JOYAXISMOTION:
@@ -183,7 +183,7 @@ class SceneInitiale(Scene):
 
 
 class SceneJeu(Scene):
-    "Scene du jeu."
+    '''Scene du jeu.'''
     def __init__(self):
         #Initialisation de la scene
         Scene.__init__(self)
@@ -196,11 +196,11 @@ class SceneJeu(Scene):
         #Variables de controle.
                       
     def evenements(self, evenement = None):
-        "Lire les evenements pour déterminer les action ou la scene correspondante."
+        '''Lire les evenements pour déterminer les action ou la scene correspondante.'''
         pass
         
     def evenements_clavier(self, clavier = None):
-        "Lire les evenements clavier pour déterminer les action ou la scene correspondante." 
+        '''Lire les evenements clavier pour déterminer les action ou la scene correspondante.''' 
         #print clavier
         if clavier:
             touche = clavier.key
@@ -208,20 +208,18 @@ class SceneJeu(Scene):
                 self.changer_scene(SceneInitiale())
         
     def evenements_souris(self, souris = None):
-        "Lire les evenements souris pour déterminer les action ou la scene correspondante."
+        '''Lire les evenements souris pour déterminer les action ou la scene correspondante.'''
         if souris:
             if souris.type == pygame.MOUSEBUTTONDOWN: # clic souris
                 bouton = souris.button
                 position = souris.pos
                 if bouton == 1 or bouton == 3: #bouton gauche ou droit de la souris
                     self.poissons.evenements_souris(bouton,position)
-                #if bouton == 1:
-                    #self.poissons.evenements_souris(position)
-                #if bouton == 3: #clic droit je ballance d ela nourriture
-                    #self.nourriture.evenements_souris(position)
+                if bouton == 5: #molette bas de souris, j'affiche de la nourriture
+                    self.nourriture.evenements_souris(bouton, position)
                 
     def evenements_joystick(self, joystick = None):
-        "Lire les evenements souris pour déterminer les action ou la scene correspondante."
+        '''Lire les evenements souris pour déterminer les action ou la scene correspondante.'''
         if joystick:
             if joystick.type == pygame.JOYAXISMOTION:
                 pass
@@ -233,21 +231,20 @@ class SceneJeu(Scene):
                 if bouton == 9: #bouton START !!! MENU PAUSE !!!
                     self.changer_scene(SceneInitiale())
                 #else:
-                    #self.gorille.evenements_joystick(bouton)
+                    #self.poisson.evenements_joystick(bouton)
     
     def actualiser(self): 
         #Actualisation n'affiche rien
         self.bulles.actualiser()
         self.nourriture.actualiser()
+		# changer le comportement des poissons si il y a de la nourriture
+        '''if self.poissons.mange(self.nourriture):
+            self.nourriture.effacer()'''
         self.poissons.actualiser()
-        #self.poisson_1.actualiser()
-        #self.poisson_2.actualiser()
-        #self.poisson_3.actualiser()
-        #self.poisson_4.actualiser()
-        # Passage au niveau 2 ou jeu fini
+        # Passage au niveau 2 ou jeu fini ?
    
     def afficher(self, ecran):
-        "Afficher les objets sur l'ecran."
+        '''Afficher les objets sur l'ecran.'''
         #Remplissage en noir
         ecran.fill( (0x11, 0x11, 0x11) )  
         #Image de fond
@@ -255,11 +252,6 @@ class SceneJeu(Scene):
         self.bulles.afficher(ecran)
         self.nourriture.afficher(ecran)
         self.poissons.afficher(ecran)
-        #Dessiner les poissons.
-        #self.poisson_1.afficher(ecran)
-        #self.poisson_2.afficher(ecran)
-        #self.poisson_3.afficher(ecran)
-        #self.poisson_4.afficher(ecran)
         #Dessiner les textes.
         #ecran.blit(self.texte_compteur.afficher(str(self.points)), self.texte_compteur.position(2, 2, 7, 7))
         #ecran.blit(self.texte_vies.afficher(str(self.vies)), self.texte_vies.position(0, 2, 7, 7))
@@ -267,7 +259,7 @@ class SceneJeu(Scene):
 
 
 class SceneCredis(Scene):
-    "Scene menu : affiche le menu."
+    '''Scene menu : affiche le menu.'''
     def __init__(self):
         #Initialisation de la scene
         Scene.__init__(self)
@@ -292,12 +284,12 @@ class SceneCredis(Scene):
         self.texte_stitre = fonction.Texte("Credits", 20, constante.gris)
         self.credis = credis.lire_credis()
         self.texte_credis = fonction.Texte_multiligne( (self.credis) )
-        self.texte_credis.position(0, 0, 370, 95)
+        self.texte_credis.position(0, 0, 380, 65)
         self.texte_retour = fonction.Texte(" > Retour [R]",30, constante.bleufonce)
        
     
     def evenements_clavier(self, clavier = None):
-        "Lire les evenements clavier pour déterminer les action ou la scene correspondante." 
+        '''Lire les evenements clavier pour déterminer les action ou la scene correspondante.''' 
         if clavier:
             touche = clavier.key
             if touche == pygame.K_r or touche == pygame.K_RETURN: #retour au menu
@@ -305,7 +297,7 @@ class SceneCredis(Scene):
 
 
     def evenements_souris(self, souris = None):
-        "Lire les evenements souris pour déterminer les action ou la scene correspondante." 
+        '''Lire les evenements souris pour déterminer les action ou la scene correspondante.'''
         if souris: #print souris
             if souris.type == pygame.MOUSEBUTTONDOWN: # clic souris
                 bouton = souris.button
@@ -318,7 +310,7 @@ class SceneCredis(Scene):
                 
     
     def evenements_joystick(self, joystick = None):
-        "Lire les evenements souris pour déterminer les action ou la scene correspondante."
+        '''Lire les evenements souris pour déterminer les action ou la scene correspondante.'''
         if joystick:           
             if joystick.type == pygame.JOYBUTTONDOWN: # les boutons
                 bouton = joystick.button

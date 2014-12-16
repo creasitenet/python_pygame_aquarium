@@ -3,7 +3,7 @@
 # Ecrit par : Edouard Boissel
 # Licence : LGPL
 # Date : 03/06/12
-"Elements du jeu."
+'''Elements du jeu.'''
 
 import pygame
 import constantes as constante
@@ -11,8 +11,8 @@ import fonctions as fonction
 from random import randrange, randint
 
 class Bulles(pygame.sprite.Sprite): 
-    "Define l'image des bulles et les positions d'affichage."
-    "N'utilise pas la fonction get_rect qui pourrait simplifier"
+    '''Define l'image des bulles et les positions d'affichage.
+    N'utilise pas la fonction get_rect qui pourrait simplifier'''
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         #Chargement des images des différentes nourritures
@@ -53,7 +53,7 @@ class Bulles(pygame.sprite.Sprite):
 
 
     def actualiser(self):
-        "Actualiser la positionde chaque bulle. n'affiche rien"
+        '''Actualiser la positionde chaque bulle. n'affiche rien'''
         #son = pygame.mixer.Sound("./sons/bouge.ogg")
         #son.set_volume(0.3) #volume        
         #son.fadeout(300) #Fondu à 300ms de la fin de l'objet "son"
@@ -71,7 +71,7 @@ class Bulles(pygame.sprite.Sprite):
                 
                 
     def afficher(self, ecran):
-        "Sert pour afficher les bulles."
+        '''Sert pour afficher les bulles.'''
         for i in range(0, len(self.images)):
             ecran.blit(self.images[i], self.positions[i])
 

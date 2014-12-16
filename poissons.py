@@ -3,7 +3,7 @@
 # Ecrit par : Edouard Boissel
 # Licence : LGPL
 # Date : 03/06/12
-"Elements du jeu."
+'''Elements du jeu.'''
 
 import pygame
 import constantes as constante
@@ -29,7 +29,9 @@ class Poissons(pygame.sprite.Sprite):
         #structure positions
         self.positions = [] #tuple (x,y)
         # structure direction (sens et vitesse)
-        self.directions = [] #tuple (x,y)     
+        self.directions = [] #tuple (x,y)
+		#booleen a faim
+        self.afaim = True
         
     def generer(self, position_x, position_y):
         '''Generer le poisson.'''
@@ -81,16 +83,15 @@ class Poissons(pygame.sprite.Sprite):
         
         
     def evenements(self, evenement = None):
-        '''Recoit les evenements pour déterminer les action du poisson.'''
+        '''Recoit les evenements pour déterminer les actions sur les poissons. pour l'instant aucune.'''
         pass
     
     def evenements_clavier(self, touche = None):
-        '''Recoit les evenements clavier pour déterminer les action du poisson.'''
-        # Définir la touche enfoncée 
+        '''Recoit les evenements clavier pour déterminer les actions sur les poissons. pour l'instant aucune'''
         pass
     
     def evenements_souris(self, bouton = None, position = None):
-        '''Recoit les evenements souris pour déterminer les action du poisson.'''
+        '''Recoit les evenements souris pour déterminer les action sur les poissons.'''
         #print (bouton) #1 = gauche, 2 = milieu, 3 = droite, 4 = molette haut, 5 = molette bas
         #print (position) # position en pixel sur l'ecran
         if bouton == 1: #bouton gauche de la souris
@@ -100,11 +101,12 @@ class Poissons(pygame.sprite.Sprite):
         #pass
         
     def evenements_joystick(self, axe = None, sens = None):
-        '''Recoit les evenements joystick pour déterminer les action du joueur.'''
+        '''Recoit les evenements joystick pour déterminer les actions sur les poissons. pour l'instant aucune'''
         pass   
     
     def actualiser(self):
-        '''Actualiser la position de chaque poisson.''' # L'actualisation n'affiche rien !!!
+        '''Actualiser la position de chaque poisson.''' 
+		# L'actualisation n'affiche rien
         for i in range(0, len(self.images)): #pour chaque poisson de la struture
             
             # changement de direction en cas de colision avec les bord
@@ -117,6 +119,8 @@ class Poissons(pygame.sprite.Sprite):
             direction=(direction_x,direction_y)
             self.directions[i] = direction
             
+			# changement de direction si il y a de la nourriture ???			
+			
             # changement d'image
             if self.directions[i][0] >= 1: #va a droite
                 self.images[i] = self.images_gauche_droite[i][1]
@@ -131,26 +135,23 @@ class Poissons(pygame.sprite.Sprite):
         
     def effacer(self, numero):
         '''Sert pour effacer le poisson.'''
-        #print ("clic sur un poisson")
         self.images_gauche_droite.pop(numero)
         self.images.pop(numero) 
         self.positions.pop(numero)     
         self.directions.pop(numero)
 
     def faim(self):
-        '''Detecte si le poisson a faim.''' #pas implémenté encore
+        '''Detecte si le poisson a faim. Pas encore implémenté. La variable afaim est a true'''
         pass
     
     def mange(self, nourriture):
-        '''Detecte si le poisson mange.''' #pas implémenté encore
-        '''if self.pos_x == nourriture.rect.x and self.pos_y == nourriture.rect.y:
-            return True
-        return False'''
-        pass
+        '''Detecte si le poisson mange.'''
+        return False
+        #pass
         
     def collision(self, position_x, position_y):
-        '''Verifie si la position cliquée correspond à un poisson'''       
-        for i in range(0, len(self.images)): #pour chaque poisson de la struture
+        '''Verifie si la position cliquée correspond à un poisson'''
+        for i in range(0, len(self.images)): #pour chaque poisson de la structure
             gauche_poisson = int(self.positions[i][0])
             droite_poisson = int(self.positions[i][0] + (self.dimension.width))
             haut_poisson = int(self.positions[i][1])

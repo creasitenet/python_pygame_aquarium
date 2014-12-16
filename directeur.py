@@ -3,14 +3,14 @@
 # Ecrit par : Edouard Boissel
 # Licence : LGPL
 # Date : 05/06/12
-"Module pour la gestion de la scene en Pygame."
+'''Module pour la gestion de la scene en Pygame.'''
 
 import pygame
 import constantes as constante
 import fonctions as fonction
 
 class Directeur():
-    "Classe pour la gestion de la scene."
+    '''Classe pour la gestion de la scene.'''
     def __init__(self):
         
         #Initialiser Pygame.
@@ -33,7 +33,7 @@ class Directeur():
         self.scene = None
         
     def executer(self, scene_initiale, fps=constante.FPS):
-        "Executer la logique du jeu."
+        '''Executer la logique du jeu.'''
         #Variable scene avec les données transmises (la scene initiale au début)
         self.scene = scene_initiale
         jouer = True

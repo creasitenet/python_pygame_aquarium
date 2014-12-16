@@ -10,6 +10,7 @@ Pour le lancer, double cliquez sur le fichier jouer.py
 Vous devez avoir python 3.2 et pygame installés sur votre machine.
 Un clic gauche ajoute un poisson.
 Un clic droit sur un poisson le supprime.
+Molette bas pour faire tomber de la nourriture.
 
 Controles:
 	Jouer - Entrer

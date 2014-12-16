@@ -3,7 +3,7 @@
 # Ecrit par : Edouard Boissel
 # Licence : LGPL
 # Date : 03/06/12
-"Elements du jeu."
+'''Elements du jeu.'''
 
 import pygame
 import constantes as constante
@@ -13,11 +13,11 @@ from random import randint
  
 
 class Poisson(pygame.sprite.Sprite): 
-    "Definie le comportement et les caractéristiques du poisson."
+    '''Definie le comportement et les caractéristiques du poisson.'''
     def __init__(self):
-        "Initialise le poisson"
+        #"Initialise le poisson"
         pygame.sprite.Sprite.__init__(self)
-        #couleur
+        #couleur aleatoire
         couleurs = ["bleu","jaune","rouge","violet"]
         couleur_nb = randint(0,3)
         couleur = couleurs[couleur_nb]
@@ -54,39 +54,38 @@ class Poisson(pygame.sprite.Sprite):
         self.generer()
         
     def generer(self):
-        "Generer la position de départ du poisson."
+        #"Generer la position de départ du poisson."
         lmax = constante.LARGEUR - (self.position.width /2)
         self.position.x = randint(1, lmax)
         hmax = constante.HAUTEUR - (self.position.height /2)
         self.position.y = randint(1, hmax)
-        
             
     def evenements(self, evenement = None):
-        "Recoit les evenements pour déterminer les action du poisson."
+        #"Recoit les evenements pour déterminer les actions du poisson."
         pass
     
     def evenements_clavier(self, touche = None):
-        "Recoit les evenements clavier pour déterminer les action du poisson."
+        #"Recoit les evenements clavier pour déterminer les actions du poisson."
         # Définir la touche enfoncée 
         pass
     
     def evenements_souris(self, position = None):
-        "Recoit les evenements souris pour déterminer les action du poisson."
+        #"Recoit les evenements souris pour déterminer les actions du poisson."
         #print bouton #1 = gauche, 2 = milieu, 3 = droite, 4 = molette haut, 5 = molette bas
         #print position # position en pixel sur l'ecran
         pass
         
     def evenements_joystick(self, axe = None, sens = None):
-        "Recoit les evenements joystick pour déterminer les action du gorille."
+        #"Recoit les evenements joystick pour déterminer les action du poisson."
         pass
         
     
     def faim(self):
-        "Detecte si le poisson a faim."
+        #"Detecter si le poisson a faim."
         pass
         
     def actualiser(self):
-        "Actualiser la position du poisson." # L'actualisation n'affiche rien !!!
+        #"Actualiser la position du poisson." # L'actualisation n'affiche rien !!!
         
         #Déplacement automatique
         if self.position.x < 0 or self.position.x > constante.LARGEUR:
@@ -107,13 +106,13 @@ class Poisson(pygame.sprite.Sprite):
         #self.deplacer = 'non'
         
     def mange(self, nourriture):
-        "Detecte si le poisson mange."
+        #"Detecte si le poisson mange."
         if self.pos_x == nourriture.rect.x and self.pos_y == nourriture.rect.y:
             return True
         return False
         
     def collision(self):
-        "Verifie si le serpent entre en collision avec les parois ou lui même."
+        #"Verifie si le serpent entre en collision avec les parois ou lui même."
         pass
         '''if (self.corp[0].left< 0 or self.corp[0].right> constante.LARGEUR or
                self.corp[0].top< 0 or self.corp[0].bottom> constante.HAUTEUR or
@@ -122,7 +121,7 @@ class Poisson(pygame.sprite.Sprite):
         return False'''
     
     def afficher(self, ecran):
-        "Sert pour afficher le gorille."
+        #"Sert pour afficher le poisson."
         ecran.blit(self.image, self.position) 
         
         

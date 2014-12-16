@@ -9,7 +9,7 @@ from directeur import Directeur
 from scenes import SceneInitiale
 
 def main():
-    "Pour jouer au jeu"
+    '''Fonction principale'''
     directeur = Directeur()
     directeur.executer(SceneInitiale(),10)
 

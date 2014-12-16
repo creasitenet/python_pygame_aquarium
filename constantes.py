@@ -3,7 +3,7 @@
 # Ecrit par : Edouard Boissel
 # Licence : LGPL
 # Date : 03/06/12
-"Constantes"
+'''Constantes'''
 
 #Personnalisation de la fenêtre
 TITRE = "Aquarium v0.1"
@@ -32,10 +32,3 @@ blanc=(255,255,255)
 noir=(0,0,0) 
 gris=(66,66,66)
 
-#Listes des images du jeu
-#image_accueil = "accueil.jpg"
-#image_fond = "fond.jpg"
-#image_mur = "mur.png"
-#image_depart = "depart.png"
-#image_arrivee = "arrivee.png"
-#image_gameover = "gameover.jpg"

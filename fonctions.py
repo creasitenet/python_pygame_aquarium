@@ -3,7 +3,7 @@
 # Ecrit par : Edouard Boissel
 # Licence : LGPL
 # Date : 03/06/12
-"Fonctions communes."
+'''Fonctions communes.'''
 
 import os #sys
 import pygame
@@ -14,7 +14,7 @@ if not pygame.mixer: print ("Warning, sons desactives")
 
 
 def continuer(evenement):
-    "Definie la fin du programme par pression de la touche [Escape]."
+    '''Definie la fin du programme par pression de la touche [Escape].'''
     for e in evenement:
         if e.type == pygame.QUIT:     #Si un de ces événements est de type QUIT
             return False      #retourne False (faux)
@@ -30,7 +30,7 @@ def pause(touche):
         pygame.time.wait(100)
             
 def charger_image(nom, alpha = False, repertoire = "images"):
-    "Charge une image du répertoire prédéfini."
+    '''Charge une image du répertoire prédéfini.'''
     chemin = os.path.join(repertoire, nom)
     try:
         image = pygame.image.load(chemin)
@@ -52,7 +52,7 @@ def charger_image(nom, alpha = False, repertoire = "images"):
 
 
 def charger_son(nom, repertoire = "sons"):
-    "Charge un son du répertoire prédéfini."
+    '''Charge un son du répertoire prédéfini.'''
     class NoneSound:
         def play(self): pass
     if not pygame.mixer:
@@ -72,9 +72,9 @@ def charger_police(nom,  taille = 36):
 
 
 class Texte():
-    "Cree un texte pour l'afficher."
+    '''Cree un texte pour l'afficher.'''
     def __init__(self, txt= "", taille= 24, couleur= (0, 0, 0), police= None):
-        "Initialise le texte."
+        #Initialise le texte.
         self.police = pygame.font.Font(police, taille)
         self.txt = txt
         self.texte = None #on vide la variable texte
@@ -83,19 +83,19 @@ class Texte():
         self.afficher()
         
     def afficher(self, chaine= ""):
-        "Affiche le texte."
+        #Affiche le texte.
         self.texte = self.police.render(self.txt + chaine, True, self.couleur)
         self.rect = self.texte.get_rect()
         return self.texte
         
     def changer_couleur(self, couleur):
-        "Change la couleur du texte."
+        #Change la couleur du texte.
         self.couleur = couleur
         
     def position(self, x= 0, y= 0, offset_x= 0, offset_y= 0):
-        "Définir la position a laquelle afficher le texte sur l'ecran."  
+        #Définir la position a laquelle afficher le texte sur l'ecran  
     
-        "Horizontalement 0 = haut, 1 = milieu, 2= bas"
+        #"Horizontalement 0 = haut, 1 = milieu, 2= bas"
         if y == 0:
             self.rect.top = offset_y
         elif y == 1:
@@ -103,7 +103,7 @@ class Texte():
         elif y == 2:
             self.rect.bottom = constante.HAUTEUR - offset_y
             
-        "Verticalement 0 = gauche, 1 = milieu, 2= droite"
+        #"Verticalement 0 = gauche, 1 = milieu, 2= droite"
         if x == 0:
             self.rect.left = offset_x
         elif x == 1:
@@ -115,9 +115,9 @@ class Texte():
 
 
 class Texte_multiligne():
-    "Classe pour afficher plusieurs lignes de texte."
+    '''Classe pour afficher plusieurs lignes de texte.'''
     def __init__(self, lignes = (""), taille= 24, couleur= (0, 0, 0), police = None):
-        "Initialise les multiples lignes de texte."
+        #"Initialise les multiples lignes de texte."
         self.police = pygame.font.Font(police, taille)
         self.lignes = lignes
         self.rect = pygame.Rect(0, 0, 0, 0)
@@ -128,7 +128,7 @@ class Texte_multiligne():
         self.generer()
         
     def generer(self):
-        "Generer un texte pour chaque chaine et le rectangle conteneur."
+        #"Generer un texte pour chaque chaine et le rectangle conteneur."
         for ligne in self.lignes:
             #Creer les nouveaux textos et leurs postions.
             self.texte.append(self.police.render(ligne, True, self.couleur))
@@ -139,18 +139,18 @@ class Texte_multiligne():
             self.rect.h += self.rects[-1].h
 
     def changer_couleur(self, couleur):
-        "Change la couleur du texte."
+        #"Change la couleur du texte."
         self.couleur = couleur
         
     def afficher(self, ecran, aligner = 0):
-        "Afficher les textes sur l'ecran."
+        #"Afficher les textes sur l'ecran."
         for i in range(0, len(self.rects)):
             self.rects[i].top = self.rect.top + self.rects[i].h * i
             self.alignement(aligner)
             ecran.blit(self.texte[i], self.rects[i])
         
     def position(self, x= 0, y= 0, offset_x= 0, offset_y= 0):
-        "Definie la position du conteneur sur l'écran."
+        #"Definie la position du conteneur sur l'écran."
         if y == 0:
             self.rect.top = offset_y
         elif y == 1:
@@ -165,7 +165,7 @@ class Texte_multiligne():
             self.rect.right = constante.LARGEUR - offset_x
 
     def alignement(self, aligner= 0):
-        "Definie l'alignement de chaque texte dans le conteneur."
+        #"Definie l'alignement de chaque texte dans le conteneur."
         for rect in self.rects:
             if aligner == 0:
                 rect.left = self.rect.left
