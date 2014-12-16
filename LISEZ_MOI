@@ -1,0 +1,16 @@
+Aquarium v0.1
+Edouard Boissel, Juin 2012
+email: edouardboissel@gmail.com
+
+Description
+----------------------------------------------------
+Aquarium est un jeu ecrit en python sous pygame et sous licence GPL.
+Pour le lancer, double cliquez sur le fichier jouer.py
+
+Controles:
+	Jouer - Entrer
+	Gauche - Fleche gauche
+	Droite - Fleche droite
+	Haut - Fleche haut
+	Bas - Fleche bas
+	Quitter - Escape
